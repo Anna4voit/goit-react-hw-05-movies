@@ -1,0 +1,20 @@
+.list {
+  padding: 0;
+  font-size: 22px;
+  font-weight: 400;
+  color: rgb(3, 11, 95);
+  list-style-type: none;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(3, 11, 95);
+}
+
+.link:hover {
+  color: rgb(17, 159, 4);
+}
+
+.list_item {
+  padding-bottom: 10px;
+}
