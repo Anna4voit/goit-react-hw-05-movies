@@ -8,10 +8,12 @@ import {
 } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import { fetchMovieDetails } from 'service/api';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
+  // const backLinkRef = useRef(location.state?.from ?? '/');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -40,9 +42,6 @@ const MovieDetails = () => {
     fetchMovieDetailsId();
   }, [movieId]);
 
-  // if (!movieDetails) {
-  //   return;
-  // }
   const { title, overview, release_date, popularity, genres, poster_path } =
     movieDetails || {};
 
@@ -50,14 +49,15 @@ const MovieDetails = () => {
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
   return (
-    <>
+    <div className={css.container}>
       {error && <p>{error}</p>}
       {loading && <Loader />}
-      <button type="button" onClick={goBack}>
+      {/* <Link to={backLinkRef.current}>Go to back</Link> */}
+      <button className={css.button} type="button" onClick={goBack}>
         Go to back
       </button>
       {movieDetails && (
-        <div>
+        <div className={css.box_movie}>
           <img
             width="300px"
             src={
@@ -75,7 +75,7 @@ const MovieDetails = () => {
             <h2>Overview</h2>
             <p>{overview}</p>
             <h2>Genres</h2>
-            <ul>
+            <ul className={css.genres_list}>
               {genres.map(genre => (
                 <li key={genre.id}>{genre.name}</li>
               ))}
@@ -83,20 +83,23 @@ const MovieDetails = () => {
           </div>
         </div>
       )}
-      {/* <hr /> */}
       <div>
         <h3>Additional information</h3>
-        <ul>
+        <ul className={css.box_details}>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link className={css.link} to="cast">
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link className={css.link} to="reviews">
+              Reviews
+            </Link>
           </li>
         </ul>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

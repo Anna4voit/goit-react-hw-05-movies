@@ -27,7 +27,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={css.container}>
+    <div>
       {error && <p>{error}</p>}
       {loading && <Loader />}
       <h1 className={css.title}>Tranding today</h1>

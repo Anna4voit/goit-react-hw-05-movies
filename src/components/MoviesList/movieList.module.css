@@ -1,8 +1,7 @@
 .list {
-  padding: 0;
+  padding: 0 0 0 40px;
   font-size: 22px;
   font-weight: 400;
-  color: rgb(3, 11, 95);
   list-style-type: none;
 }
 
