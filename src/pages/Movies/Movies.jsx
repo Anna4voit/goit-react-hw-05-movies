@@ -4,6 +4,7 @@ import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchMovie from 'components/SearchMovie/SearchMovie';
 import { useSearchParams } from 'react-router-dom';
+import css from './Movies.module.css';
 
 const Movies = () => {
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,9 @@ const Movies = () => {
       {error && <p>{error}</p>}
       {loading && <Loader />}
       {noMovies && (
-        <p>There is no movies with this request. Please, try again</p>
+        <p className={css.text}>
+          There is no movies with this request. Please, try again
+        </p>
       )}
       <MoviesList movies={movies} />
     </div>
