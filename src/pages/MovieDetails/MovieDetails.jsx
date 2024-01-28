@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   useParams,
   Outlet,
@@ -13,16 +13,14 @@ import css from './MovieDetails.module.css';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  // const backLinkRef = useRef(location.state?.from ?? '/');
+  const backLinkRef = useRef(location.state?.from ?? '/');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [movieDetails, setMovieDetails] = useState(null);
 
-  const from = location.state?.from || '/';
   const navigate = useNavigate();
-
-  const goBack = () => navigate(from);
+  const goBack = () => navigate(backLinkRef.current);
 
   useEffect(() => {
     if (!movieId) return;
@@ -53,6 +51,7 @@ const MovieDetails = () => {
       {error && <p>{error}</p>}
       {loading && <Loader />}
       {/* <Link to={backLinkRef.current}>Go to back</Link> */}
+
       <button className={css.button} type="button" onClick={goBack}>
         Go to back
       </button>
